@@ -30,7 +30,6 @@ def project(request,pk):
     
     # add reviews
     if request.method == "POST":
-        print(request.POST)
         form = ReviewForm(request.POST)
         review = form.save(commit=False)
         review.project = projectObj #which project person voting on.

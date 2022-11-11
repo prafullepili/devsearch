@@ -1,9 +1,10 @@
 from django.db import models
 import uuid
-from django.forms import ValidationError
+import os
+from django.conf import settings
+# from django.forms import ValidationError
 
 from users.models import Profile
-
 
 
 class Project(models.Model):
@@ -25,13 +26,19 @@ class Project(models.Model):
     class Meta:
         ordering = ['-vote_ratio','-vote_total','title']
     
-    def imageURL(self):
-        try:
-            url = self.featured_image.url
-        except:
-            url = ''
-        return url
-
+    # def imageURL(self):
+    #     try:
+    #         url = self.featured_image.url
+    #     except:
+    #         url = ''
+    #     return url
+        
+    def imgIsExist(self):
+        p = os.getcwd()+f"/{'static' if settings.DEBUG else 'staticfiles' }/{self.featured_image.url}"
+        if os.path.isfile(p):
+            return self.featured_image.url
+        else:
+            return f"/images/default.jpg"
     @property
     def reviewers(self):
         queryset = self.review_set.all().values_list('owner__id',flat=True)

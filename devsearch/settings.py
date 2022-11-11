@@ -15,6 +15,7 @@ import os
 from datetime import timedelta
 from dbpass import PASSWORD,USERNAME,ATLAS_CLUSTER
 
+os.system("cls")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
