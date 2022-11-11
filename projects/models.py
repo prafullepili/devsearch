@@ -33,12 +33,13 @@ class Project(models.Model):
     #         url = ''
     #     return url
         
-    def imgIsExist(self):
+    def imageURL(self):
         p = os.getcwd()+f"/{'static' if settings.DEBUG else 'staticfiles' }/{self.featured_image.url}"
         if os.path.isfile(p):
             return self.featured_image.url
         else:
             return f"/images/default.jpg"
+            
     @property
     def reviewers(self):
         queryset = self.review_set.all().values_list('owner__id',flat=True)

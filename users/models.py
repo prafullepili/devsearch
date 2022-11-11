@@ -1,7 +1,9 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import ValidationError
+# from django.forms import ValidationError
+import os
+from django.conf import settings
 
 
 
@@ -27,13 +29,19 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user.username)
     
-
     def userProfile(self):
-        try:
-            url = self.profile_image.url
-        except:
-            url = ''
-        return url
+        p = os.getcwd()+f"/{'static' if settings.DEBUG else 'staticfiles' }/{self.profile_image.url}"
+        if os.path.isfile(p):
+            return self.profile_image.url
+        else:
+            return f"/images/profiles/user-default.png"
+
+    # def userProfile(self):
+    #     try:
+    #         url = self.profile_image.url
+    #     except:
+    #         url = ''
+    #     return url
 
 class Skill(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)

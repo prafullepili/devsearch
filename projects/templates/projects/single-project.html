@@ -22,7 +22,7 @@
               {% endif %}
             </div>
             <div class="column column--2of3">
-              <a href="{{project.imageURL}}"><img class="singleProject__preview" src="{{project.featured_image.url}}" alt="portfolio thumbnail" /></a>
+              <a href="{{project.imageURL}}"><img class="singleProject__preview" src="{{project.imageURL}}" alt="portfolio thumbnail" /></a>
             </br>
               <a href="{% url 'user-profile' project.owner.id %}" class="singleProject__developer">{{project.owner}}</a>
               <h2 class="singleProject__title">{{project.title}}</h2>
@@ -60,7 +60,7 @@
                   {% for review in project.review_set.all %}
                     {% if review.body %}
                       <div class="comment">
-                        <a href="{% url 'user-profile' review.owner.id %}"> <img class="avatar avatar--md" src="{{review.owner.profile_image.url}}" alt="user" /> </a>
+                        <a href="{% url 'user-profile' review.owner.id %}"> <img class="avatar avatar--md" src="{{review.owner.userProfile}}" alt="user" /> </a>
                         <div class="comment__details">
                           <a href="profile.html" class="comment__author">{{review.owner }}</a>
                           <p class="comment__info"> {{review.body|linebreaksbr}} </p>
