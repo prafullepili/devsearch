@@ -1,0 +1,3 @@
+PASSWORD = '161515101Po'
+USERNAME = 'prafullepili'
+ATLAS_CLUSTER = '5hgexjs'
