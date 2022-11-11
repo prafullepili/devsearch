@@ -34,11 +34,13 @@ class Project(models.Model):
     #     return url
         
     def imageURL(self):
-        p = os.getcwd()+f"/{'static' if settings.DEBUG else 'staticfiles' }/{self.featured_image.url}"
-        if os.path.isfile(p):
-            return self.featured_image.url
-        else:
-            return f"/images/default.jpg"
+        if self.featured_image:
+            p = os.getcwd()+f"/{'static' if settings.DEBUG else 'staticfiles' }/{self.featured_image.url}"
+            if os.path.isfile(p):
+                return self.featured_image.url
+            else:
+                return f"/images/default.jpg"
+        return f"/images/default.jpg"
             
     @property
     def reviewers(self):
