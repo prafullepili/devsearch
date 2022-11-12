@@ -35,7 +35,7 @@ class Project(models.Model):
         
     def imageURL(self):
         if self.featured_image:
-            p = os.getcwd()+f"/{'static' if settings.DEBUG else 'staticfiles' }/{self.featured_image.url}"
+            p = os.getcwd()+f"/static{self.featured_image.url}"
             if os.path.isfile(p):
                 return self.featured_image.url
             else:

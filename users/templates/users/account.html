@@ -1,6 +1,6 @@
 
   {% extends 'main.html' %}
-
+{% load static %}
   {% block content %}
   <!-- Main Section -->
   <main class="settingsPage profile my-md">
@@ -10,7 +10,7 @@
           <div class="card text-center">
             <div class="card__body dev">
               <a class="tag tag--pill tag--main settings__btn" href="{% url 'edit-account' %}"><i class="im im-edit"></i> Edit</a>
-              <a href="{{ profile.userProfile }}"> <img class="avatar avatar--xl dev__avatar" src="{{ profile.userProfile }}" /></a>
+              <a href="{% static profile.userProfile %}"> <img class="avatar avatar--xl dev__avatar" src="{% static profile.userProfile %}" /></a>
               <h2 class="dev__name">{{profile.name}}</h2>
               <p class="dev__title">{{profile.short_intro}}</p>
               <p class="dev__location">Based in {{profile.location}}</p>
@@ -91,7 +91,7 @@
             {% for project in projects %}
             <tr>
               <td class="settings__thumbnail">
-                <a href="{% url 'project' project.id %}"><img src="{{project.imageURL}}" alt="Project Thumbnail" /></a>
+                <a href="{% url 'project' project.id %}"><img src="{% static project.imageURL %}" alt="Project Thumbnail" /></a>
               </td>
               <td class="settings__tableInfo">
                 <a href="{% url 'project' project.id %}">{{project.title}}</a>

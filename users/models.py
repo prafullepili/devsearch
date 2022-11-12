@@ -31,8 +31,10 @@ class Profile(models.Model):
     
     def userProfile(self):
         if self.profile_image:
-            p = os.getcwd()+f"/{'static' if settings.DEBUG else 'staticfiles' }/{self.profile_image.url}"
+            p = os.getcwd()+f"/static{self.profile_image.url}"
+            print(p,"#")
             if os.path.isfile(p):
+                print(p,"@")
                 return self.profile_image.url
             else:
                 return f"/images/profiles/user-default.png"

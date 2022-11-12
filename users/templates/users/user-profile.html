@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content %}
     <!-- Main Section -->
   <main class="profile my-md">
@@ -8,7 +8,7 @@
         <div class="column column--1of3">
           <div class="card text-center">
             <div class="card__body dev">
-              <a href="{{ profile.userProfile }}"><img class="avatar avatar--xl" src="{{ profile.userProfile }}" /></a>
+              <a href="{% static profile.userProfile %}"><img class="avatar avatar--xl" src="{% static profile.userProfile %}" /></a>
               <h2 class="dev__name">{{profile.name}}</h2>
               <p class="dev__title">{{profile.short_intro}}</p>
               <p class="dev__location">{{profile.location}}</p>
@@ -88,7 +88,7 @@
               <div class="column">
                 <div class="card project">
                   <a href="{% url 'project' project.id %}" class="project">
-                    <img class="project__thumbnail" src="{{project.imageURL}}" alt="project thumbnail" />
+                    <img class="project__thumbnail" src="{% static project.imageURL %}" alt="project thumbnail" />
                     <div class="card__body">
                       <h3 class="project__title">{{project.title}}</h3>
                       <p><a class="project__author" href="{% url 'user-profile' project.owner.id %}">{{project.owner}}</a></p>
